@@ -62,7 +62,3 @@ def hello_world():
         colour.append('#%02X%02X%02X' % (r(), r(), r()))
     return render_template('hello_world.html', set=zip(values, labels, colour),tableList=data)
 
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
