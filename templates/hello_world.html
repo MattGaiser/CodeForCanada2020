@@ -1,0 +1,56 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<div style="text-align: center;"><h1>CodeForCanada Matthew Gaiser</h1></div>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: auto;
+        width: 60% !important;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    .chart {
+        margin-right: 20%
+    }
+</style>
+
+<div style="text-align: center;"><canvas id="chart" width="500" height="400" ></canvas></div>
+<script>
+    var thedata = [
+        {% for values,label,colours in set %}
+            {
+                value: {{values}},
+                label: "{{label}}",
+                color: "{{colours}}"
+            },
+        {% endfor %}
+    ];
+    var mychart = document.getElementById("chart").getContext("2d");
+    new Chart(document.getElementById("chart").getContext("2d")).Pie(thedata);
+</script>
+
+<br>
+<br>
+<table>
+    <tr>
+        <th>Violation Type</th>
+        <th>First Violation</th>
+        <th>Last Violation</th>
+        <th>Violation Count</th>
+    </tr>
+    {% for row in tableList %}
+        <tr>
+            <td>  {{ row[0] }}  </td>
+            <td>  {{ row[1] }}  </td>
+            <td>    {{ row[2] }}     </td>
+            <td>    {{ row[3] }}     </td>
+
+        </tr>
+    {% endfor %}
+</table>
+</html>
